@@ -1,0 +1,11 @@
+$backgroundColor: var(bgcolor);
+$fontSize: calc(10px + 2vmin);
+
+.nav {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  // flex-direction: row;
+  background: #FFF;
+}
