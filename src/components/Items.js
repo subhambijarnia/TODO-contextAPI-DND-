@@ -3,6 +3,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import TodoContext from '../contexts/context/TodoContext';
 import './items.scss'
 
+
 export function ItemList() {
   const { dispatch, TodoItems } = useContext(TodoContext);
 
@@ -40,15 +41,11 @@ export function ItemList() {
                       {columns.items.map((item, index) => (
                         <Draggable key={item.id} draggableId={item.id} index={index}>
                           {(provided, snapshot) => (
-                            <div
+                            <div className='todobox'
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
                               style={{
-                                userSelect: "none",
-                                padding: 16,
-                                margin: "0 0 8px 0",
-                                minHeight: "50px",
                                 backgroundColor: snapshot.isDragging
                                   ? "#263B4A"
                                   : "#456C86",
@@ -56,11 +53,38 @@ export function ItemList() {
                                 ...provided.draggableProps.style
                               }}
                             >
-                              <div style={{ fontSize: 'calc(10px + 1vmin)', fontWeight: 'bold' }}>
+                              <div className='title' >
                                 {item.content.title}
                               </div>
-                              <div style={{ fontSize: 'calc(10px + 1vmin)' }}>
+                              <div>
                                 {item.content.description}
+                              </div>
+                              <div className='time'>
+                                <i className="fa fa-clock-o" />
+                                {item.content.hr}hr
+                                <div>
+                                  {
+                                    (item.TotalTime > 0)
+                                      ?
+                                      <div style={{ color: 'rgb(74, 255, 96)', fontWeight: 'bold' }}>
+                                        Completed! {item.TotalTime}
+                                      </div>
+                                      :
+                                      (item.TotalTime === 0)
+                                        ?
+                                        <div style={{ color: 'rgb(255, 74, 74)', fontWeight: 'bold' }}>
+                                          not complete on time
+                                        </div>
+                                        :
+                                        (item.TotalTime < 0)
+                                          ?
+                                          <div style={{ color: 'rgb(255, 74, 74)', fontWeight: 'bold' }}>
+                                            take {item.TotalTime*-1} hours extra.
+                                          </div>
+                                          :
+                                          ''
+                                  }
+                                </div>
                               </div>
                             </div>
                           )}

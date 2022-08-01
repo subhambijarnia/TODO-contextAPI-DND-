@@ -5,7 +5,9 @@ import './popup.scss'
 function Popup(props) {
   const [todo, setTodo] = useState({
     title: '',
-    description: ''
+    description: '',
+    hr: 0,
+    min: 0
   });
 
   const handleChange = (e) => {
@@ -16,10 +18,6 @@ function Popup(props) {
     })
   }
 
-  // const submitButton = () => {
-  //   alert(JSON.stringify(todo))
-  // }
-  // const [description, setDescription] = useState(" ");
   const { dispatch } = useContext(TodoContext);
 
   return (
@@ -55,12 +53,20 @@ function Popup(props) {
                 onChange={handleChange}
               ></input>
             </label>
+            <label>
+              hours
+              <input
+                type="number"
+                name="hr"
+                placeholder="hours"
+                value={todo.hr}
+                onChange={handleChange}
+              ></input>
+            </label>
             <button onClick={() => { dispatch({ type: 'ADD_TODO', payload: todo }); props.setTrigger(false) }}>Add</button>
-            {/* <button onClick={submitButton}>Add</button> */}
           </form>
         </article>
       </div>
-
     ) : ''
   )
 }

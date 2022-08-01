@@ -1,6 +1,5 @@
 import React, {useContext} from 'react'
 import TodoContext from '../contexts/context/TodoContext'
-import initialItems from '../contexts/store';
 
 function ResetItem() {
   const { dispatch } = useContext(TodoContext);

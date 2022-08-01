@@ -1,7 +1,6 @@
 import './App.scss';
 import React, { useState } from "react";
 import { ItemList } from './components/Items';
-// import NewItem from './components/NewItem';
 import TodoProvider from './contexts/provider/TodoProvider';
 import ResetItem from './components/ResetItem';
 import Popup from './components/Popup';
