@@ -1,28 +1,20 @@
 import initialItems from '../store'
 import uuid from "react-uuid";
 
-// const getTime = (startTime, assignTime) => {
-//   const toTime = new Date();
-//   const fromTime = new Date(startTime);
-//   const differenceTravel = toTime.getTime() - fromTime.getTime();
-//   const hr = Math.floor((((differenceTravel) / (1000)) / 60) / 60);
-//   const assignMin = assignTime;
-//   const totalTime = Math.floor((assignMin - hr));
-//   alert('time to complete : ' + hr + ' hr, remaining hours : ' + totalTime + ' hr.');
-// }
-
 function TodoReducer(state, action) {
   switch (action.type) {
     case 'ADD_TODO':
       const dataTodo = { id: uuid(), content: action.payload }
-      const itemsForUpdate = [...state.Todo.items];
+      const itemsForUpdate = [...state.toDoTasks.Todo.items];
       itemsForUpdate.push(dataTodo);
       return {
-        ...state,
-        ['Todo']: {
-          ...state.Todo,
-          items: itemsForUpdate
-        },
+        ...state, toDoTasks: {
+          ...state.toDoTasks,
+          ['Todo']: {
+            ...state.toDoTasks.Todo,
+            items: itemsForUpdate
+          }
+        }
       }
 
     case 'SOURCETODEST':
@@ -30,27 +22,30 @@ function TodoReducer(state, action) {
       if (source.droppableId !== destination.droppableId) {
         if (source.droppableId === 'Todo' && destination.droppableId === 'InProgress') {
           let startDate = new Date();
-          const sourceColumn = state[source.droppableId];
-          const destColumn = state[destination.droppableId];
+          console.log('state', state.toDoTasks);
+          const sourceColumn = state.toDoTasks[source.droppableId];
+          const destColumn = state.toDoTasks[destination.droppableId];
           const sourceItems = [...sourceColumn.items];
           const destItems = [...destColumn.items];
           const [removed] = sourceItems.splice(source.index, 1);
           const removedWIthDate = { ...removed, 'startDate': startDate }
           destItems.splice(destination.index, 0, removedWIthDate);
           return {
-            ...state,
-            [source.droppableId]: {
-              ...sourceColumn,
-              items: sourceItems
-            },
-            [destination.droppableId]: {
-              ...destColumn,
-              items: destItems
+            ...state, toDoTasks: {
+              ...state.toDoTasks,
+              [source.droppableId]: {
+                ...sourceColumn,
+                items: sourceItems
+              },
+              [destination.droppableId]: {
+                ...destColumn,
+                items: destItems
+              }
             }
           };
         } else if (source.droppableId === 'InProgress' && destination.droppableId === 'Done') {
-          const sourceColumn = state[source.droppableId];
-          const destColumn = state[destination.droppableId];
+          const sourceColumn = state.toDoTasks[source.droppableId];
+          const destColumn = state.toDoTasks[destination.droppableId];
           const sourceItems = [...sourceColumn.items];
           const destItems = [...destColumn.items];
           const [removed] = sourceItems.splice(source.index, 1);
@@ -70,45 +65,35 @@ function TodoReducer(state, action) {
           destItems.splice(destination.index, 0, removedTotalTime);
           console.log('destItems ', destItems);
           return {
-            ...state,
-            [source.droppableId]: {
-              ...sourceColumn,
-              items: sourceItems
-            },
-            [destination.droppableId]: {
-              ...destColumn,
-              items: destItems
+            ...state, toDoTasks: {
+              ...state.toDoTasks,
+              [source.droppableId]: {
+                ...sourceColumn,
+                items: sourceItems
+              },
+              [destination.droppableId]: {
+                ...destColumn,
+                items: destItems
+              }
             }
           };
         } else {
-          // const sourceColumn = state[source.droppableId];
-          // const destColumn = state[destination.droppableId];
-          // const sourceItems = [...sourceColumn.items];
-          // const destItems = [...destColumn.items];
-          // const [removed] = sourceItems.splice(source.index, 1);
-          // destItems.splice(destination.index, 0, removed);
           return {
             ...state
-            // [source.droppableId]: {
-            //   ...sourceColumn,
-            //   items: sourceItems
-            // },
-            // [destination.droppableId]: {
-            //   ...destColumn,
-            //   items: destItems
-            // }
           };
         }
       } else {
-        const column = state[source.droppableId];
+        const column = state.toDoTasks[source.droppableId];
         const copiedItems = [...column.items];
         const [removed] = copiedItems.splice(source.index, 1);
         copiedItems.splice(destination.index, 0, removed);
         return {
-          ...state,
-          [source.droppableId]: {
-            ...column,
-            items: copiedItems
+          ...state, toDoTasks: {
+            ...state.toDoTasks,
+            [source.droppableId]: {
+              ...column,
+              items: copiedItems
+            }
           }
         };
       }

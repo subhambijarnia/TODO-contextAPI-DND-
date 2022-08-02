@@ -6,7 +6,7 @@ $fontSize: calc(10px + 2vmin);
   justify-content: center;
   height: 100%;
   width: 100%;
-  // flex-direction: row;
+  margin-top: 36px;
   background: #FFF;
 }
 
@@ -15,9 +15,11 @@ $fontSize: calc(10px + 2vmin);
   margin: 0 0 8px 0;
   min-height: 50px;
   font-size: calc(10px + 1vmin);
+
   .title {
     font-weight: bold;
   }
+
   .time {
     display: flex;
     flex-direction: row;

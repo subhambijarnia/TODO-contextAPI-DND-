@@ -1,23 +1,23 @@
 import './App.scss';
 import React, { useState } from "react";
-import { ItemList } from './components/Items';
 import TodoProvider from './contexts/provider/TodoProvider';
-import ResetItem from './components/ResetItem';
-import Popup from './components/Popup';
+import Todo from './components/Todo';
+import Users from './components/Users';
 
 function App() {
-  const [button, setButton] = useState(false)
+  const [page, setPage] = useState(0);
   return (
     <TodoProvider>
       <header className="App-header">
         <h2>🚀 ToDo App</h2>
-        <button onClick={() => setButton(true)}>ADD TODO</button>
+        <div>
+          <button onClick={() => setPage(0)}>Tasks</button>
+          <button onClick={() => setPage(1)}>Users</button>
+        </div>
       </header>
       <main className='main'>
-        <ItemList />
-        <ResetItem />
+        {(page === 0) ? <Todo /> : <Users />}
       </main>
-      <Popup trigger={button} setTrigger={setButton} ></Popup>
     </TodoProvider>
   );
 }

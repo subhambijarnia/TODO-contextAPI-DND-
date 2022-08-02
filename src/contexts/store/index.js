@@ -9,18 +9,24 @@ const itemsFromBackend = [
 ];
 
 const initialItems = {
-  ['Todo']: {
-    name: "To do",
-    items: itemsFromBackend
+  toDoTasks: {
+    ['Todo']: {
+      name: "To do",
+      items: itemsFromBackend
+    },
+    ['InProgress']: {
+      name: "In Progress",
+      items: []
+    },
+    ['Done']: {
+      name: "Done",
+      items: []
+    }
   },
-  ['InProgress']: {
-    name: "In Progress",
-    items: []
-  },
-  ['Done']: {
-    name: "Done",
-    items: []
-  }
+  users: [
+    { id: uuid(), name: 'Admin' },
+    { id: uuid(), name: 'User' }
+  ]
 };
 
 export default initialItems;

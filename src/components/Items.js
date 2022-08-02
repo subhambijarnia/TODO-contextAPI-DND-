@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import TodoContext from '../contexts/context/TodoContext';
 import './items.scss'
@@ -6,6 +6,7 @@ import './items.scss'
 
 export function ItemList() {
   const { dispatch, TodoItems } = useContext(TodoContext);
+  console.log(TodoItems);
 
   function OnDragEnd(result) {
     if (!result.destination) {
@@ -19,7 +20,7 @@ export function ItemList() {
       <DragDropContext
         onDragEnd={result => OnDragEnd(result)}
       >
-        {Object.entries(TodoItems).map(([columnsId, columns]) => {
+        {Object.entries(TodoItems.toDoTasks).map(([columnsId, columns]) => {
           return (
             <div key={columnsId}>
               <h2 style={{ justifyContent: "center", textAlign: "center" }}>{columns.name}</h2>
@@ -79,7 +80,7 @@ export function ItemList() {
                                         (item.TotalTime < 0)
                                           ?
                                           <div style={{ color: 'rgb(255, 74, 74)', fontWeight: 'bold' }}>
-                                            take {item.TotalTime*-1} hours extra.
+                                            take {item.TotalTime * -1} hours extra.
                                           </div>
                                           :
                                           ''
