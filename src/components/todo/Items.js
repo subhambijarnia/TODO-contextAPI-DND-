@@ -1,13 +1,10 @@
 import React, { useContext } from 'react';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import TodoContext from '../contexts/context/TodoContext';
-import './items.scss'
-
+import TodoContext from '../../contexts/context/TodoContext';
+import './items.scss';
 
 export function ItemList() {
   const { dispatch, TodoItems } = useContext(TodoContext);
-  console.log(TodoItems);
-
   function OnDragEnd(result) {
     if (!result.destination) {
       return;

@@ -16,6 +16,12 @@ function TodoReducer(state, action) {
           }
         }
       }
+    case 'ADD_USER':
+      return {
+        ...state, users: [
+          ...state.users, {id:uuid(), name:action.payload.name}
+        ]
+      }
 
     case 'SOURCETODEST':
       const { source, destination } = action.payload;

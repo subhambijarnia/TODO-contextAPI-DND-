@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ItemList } from './Items'
-import Popup from './Popup'
-import ResetItem from './ResetItem'
+import AddTodo from './AddTodo'
+import ResetItem from '../ResetItem'
 
 function Todo() {
   const [button, setButton] = useState(false)
@@ -29,7 +29,7 @@ function Todo() {
       </header>
       <ItemList />
       <ResetItem />
-      <Popup trigger={button} setTrigger={setButton} ></Popup>
+      <AddTodo trigger={button} setTrigger={setButton} />
     </>
   )
 }

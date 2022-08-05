@@ -1,22 +1,18 @@
 import React, { useContext, useState } from 'react'
-import TodoContext from '../contexts/context/TodoContext';
-import './popup.scss'
+import TodoContext from '../../contexts/context/TodoContext';
+import '../popup.scss'
 
-function PopupUser(props) {
-  // const [todo, setTodo] = useState({
-  //   title: '',
-  //   description: '',
-  //   hr: 0,
-  //   min: 0
-  // });
+function AddUser(props) {
+  const [user, setUser] = useState({
+    name: ''
+  });
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setTodo({
-  //     ...todo,
-  //     [name]: value
-  //   })
-  // }
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setUser({
+      name: value
+    })
+  }
 
   const { dispatch } = useContext(TodoContext);
 
@@ -34,13 +30,16 @@ function PopupUser(props) {
             textAlign: 'center'
           }}>
             <label>
-              Title
+              Name
               <input
                 type="text"
-                name="User"
-                placeholder="User"
+                name="name"
+                placeholder="name"
+                value={user.name}
+                onChange={handleChange}
               ></input>
             </label>
+            <button onClick={() => { dispatch({ type: 'ADD_USER', payload: user }); props.setTrigger(false) }}>Add</button>
           </form>
         </article>
       </div>
@@ -48,4 +47,4 @@ function PopupUser(props) {
   )
 }
 
-export default PopupUser
+export default AddUser

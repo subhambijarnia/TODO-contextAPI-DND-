@@ -1,13 +1,15 @@
 import React, { useContext, useState } from 'react'
-import TodoContext from '../contexts/context/TodoContext';
-import './popup.scss'
+import TodoContext from '../../contexts/context/TodoContext';
+import '../popup.scss'
+import Select from 'react-select'
 
-function Popup(props) {
+
+function AddTodo(props) {
   const [todo, setTodo] = useState({
     title: '',
     description: '',
     hr: 0,
-    min: 0
+    userDetails: []
   });
 
   const handleChange = (e) => {
@@ -18,7 +20,20 @@ function Popup(props) {
     })
   }
 
-  const { dispatch } = useContext(TodoContext);
+  const handleUserSelect = (e) => {
+    setTodo({
+      ...todo,
+      ['userDetails']: Array.isArray(e) ? e.map(x => x.value) : []
+    })
+  }
+  console.log('todo ', todo);
+
+  const { dispatch, TodoItems } = useContext(TodoContext);
+
+  const UserArray = [];
+  Object.entries(TodoItems.users).map((user) => {
+    UserArray.push({ label: user[1].name, value: user[1] })
+  })
 
   return (
     (props.trigger) ? (
@@ -63,6 +78,14 @@ function Popup(props) {
                 onChange={handleChange}
               ></input>
             </label>
+            <Select
+              placeholder="Select Option"
+              value={UserArray.filter(obj => todo.userDetails.includes(obj.value))}
+              options={UserArray}
+              isMulti
+              isClearable
+              onChange={handleUserSelect}
+            />
             <button onClick={() => { dispatch({ type: 'ADD_TODO', payload: todo }); props.setTrigger(false) }}>Add</button>
           </form>
         </article>
@@ -71,4 +94,4 @@ function Popup(props) {
   )
 }
 
-export default Popup
+export default AddTodo

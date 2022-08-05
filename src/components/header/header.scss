@@ -1,5 +1,4 @@
 $headerBackGround: #282c34;
-$mainBackGround: #d378097a;
 $buttonColor: #09d3ac;
 $fontSize: calc(10px + 2vmin);
 
@@ -28,7 +27,8 @@ $fontSize: calc(10px + 2vmin);
     padding: 5px 10px;
     border: none;
   }
-  :link{
+
+  :link {
     font-size: $fontSize;
     background-color: $buttonColor;
     margin-right: 10px;
@@ -36,32 +36,4 @@ $fontSize: calc(10px + 2vmin);
     border: none;
     // text-decoration: none;
   }
-}
-
-.App-link {
-  color: #09d3ac;
-}
-
-.main {
-  position: absolute;
-  // background-color: $mainBackGround;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 60px;
-}
-
-.Item {
-  font-size: $fontSize;
-  display: flex;
-  flex-direction: row;
-  padding: 5px;
-}
-
-.Item button {
-  font-size: $fontSize;
-  background-color: $buttonColor;
-  padding: 5px 10px;
-  border: none;
 }

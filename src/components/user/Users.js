@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import PopupUser from './PopupUser'
+import AddUser from './AddUser'
 import UserList from './UserList'
 
 function Users() {
@@ -26,8 +26,8 @@ function Users() {
             margin: '0 10px 0 0'
           }}>ADD USER</button>
       </header>
+      <AddUser trigger={button} setTrigger={setButton} />
       <UserList />
-      <PopupUser trigger={button} setTrigger={setButton} />
     </>
   )
 }
