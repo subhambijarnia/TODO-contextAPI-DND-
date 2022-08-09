@@ -26,12 +26,11 @@ function AddTodo(props) {
       ['userDetails']: Array.isArray(e) ? e.map(x => x.value) : []
     })
   }
-  console.log('todo ', todo);
 
   const { dispatch, TodoItems } = useContext(TodoContext);
 
   const UserArray = [];
-  Object.entries(TodoItems.users).map((user) => {
+  Object.entries(TodoItems.users).forEach((user) => {
     UserArray.push({ label: user[1].name, value: user[1] })
   })
 

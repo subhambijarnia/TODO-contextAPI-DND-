@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
 import TodoContext from '../../contexts/context/TodoContext';
-import './userList.scss'
+import './userList.scss';
 
 function UserList() {
-  // const [button, serButton] = useState(false);
   const { TodoItems } = useContext(TodoContext);
   return (
     <table className='usernav'>
@@ -14,13 +14,21 @@ function UserList() {
       </tr>
       {TodoItems.users.map((user, i) => {
         return (
-          <tr key={i} >
+          <tr key={user.id} >
             <td>{i + 1}</td>
             <td>{user.name}</td>
-            <td><i className="fa fa-eye" /></td>
+            <td>
+              <NavLink
+                to={`/user/${user.id}`}
+                key={user.id}
+              >
+                <i className="fa fa-eye" />
+              </NavLink>
+            </td>
           </tr>
         )
       })}
+      <Outlet />
     </table>
   )
 }

@@ -21,20 +21,20 @@ $fontSize: calc(10px + 2vmin);
     margin-left: 10px;
   }
 
-  button {
-    font-size: $fontSize;
-    background-color: $buttonColor;
-    margin-right: 10px;
-    padding: 5px 10px;
-    border: none;
-  }
+  // button {
+  //   font-size: $fontSize;
+  //   background-color: $buttonColor;
+  //   margin-right: 10px;
+  //   padding: 5px 10px;
+  //   border: none;
+  // }
   :link{
     font-size: $fontSize;
     background-color: $buttonColor;
     margin-right: 10px;
     padding: 5px 10px;
     border: none;
-    // text-decoration: none;
+    text-decoration: none;
   }
 }
 

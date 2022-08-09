@@ -1,8 +1,11 @@
 import React from 'react'
+import { useParams } from 'react-router-dom';
 
 function AssignTask() {
+  let { userId } = useParams();
+  console.log('userId = ', userId);
   return (
-    <div>AssignTask</div>
+    <h1>AssignTask</h1>
   )
 }
 
